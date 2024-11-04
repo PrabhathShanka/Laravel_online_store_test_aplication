@@ -22,12 +22,26 @@
         </div>
     @endif
 
+
+
+
     <div class="container table-container">
         <h1 class="text-center mb-4">Product List</h1>
 
         <!-- Add Product Button -->
         <div class="mb-3">
             <a href="{{ route('products.create') }}" class="btn btn-success">Add Product</a>
+        </div>
+
+
+        <div class="mb-3">
+            <form action="{{ route('products.search') }}" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search products..."
+                        value="{{ request('search') }}">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
         </div>
 
         <!-- Product Table -->
@@ -54,7 +68,8 @@
                             <div class="d-inline-flex align-items-center">
                                 <a href="{{ route('product.edit', $product->id) }}"
                                     class="btn btn-primary btn-sm me-1">Edit</a>
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('product.destroy', $product->id) }}" method="POST"
+                                    class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -66,6 +81,7 @@
                 @endforeach
             </tbody>
         </table>
+
 
         <div class="pagination-container d-flex justify-content-center">
             <nav aria-label="Page navigation example">

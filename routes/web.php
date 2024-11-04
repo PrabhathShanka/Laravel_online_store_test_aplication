@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-
+Route::get('/products', [ProductController::class, 'search'])->name('products.search');
 Route::get('/', [ProductController::class, 'index'])->name('product.index');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');

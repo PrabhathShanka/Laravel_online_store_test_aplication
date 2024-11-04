@@ -17,6 +17,24 @@ class ProductController extends Controller
     }
 
 
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        if (empty($search)) {
+            return redirect()->route('product.index');
+        }
+
+        $products = Product::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%");
+            // ->orWhere('description', 'like', "%{$search}%");
+        })->paginate(5);
+
+        return view('pages.product.index', compact('products', 'search'));
+    }
+
+
     public function create()
     {
         return view('pages.product.create');
