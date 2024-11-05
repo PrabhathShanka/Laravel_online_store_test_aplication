@@ -15,6 +15,8 @@
 @endsection
 
 @section('content')
+    {{--  session message  --}}
+
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -33,6 +35,7 @@
             <a href="{{ route('products.create') }}" class="btn btn-success">Add Product</a>
         </div>
 
+        {{--  product Search  --}}
 
         <div class="mb-3">
             <form action="{{ route('products.search') }}" method="GET">
@@ -83,10 +86,10 @@
         </table>
 
 
+        {{--  pagination link  --}}
+
         <div class="pagination-container d-flex justify-content-center">
-            <nav aria-label="Page navigation example">
-                {{ $products->links() }}
-            </nav>
+            {{ $products->links() }}
         </div>
 
     </div>
